@@ -9,6 +9,7 @@ import { CircularProgress } from 'material-ui/Progress';
 import { FormControl } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
 import Input, { InputAdornment, InputLabel } from 'material-ui/Input';
+import Typography from 'material-ui/Typography';
 
 import VisibilityIcon from 'material-ui-icons/Visibility';
 import VisibilityOffIcon from 'material-ui-icons/VisibilityOff';
@@ -34,6 +35,10 @@ const styles = theme => ({
 
   progress: {
     marginLeft: theme.spacing.unit,
+  },
+
+  error: {
+    marginTop: theme.spacing.unit,
   },
 });
 
@@ -73,12 +78,37 @@ class Login extends Component {
   }
 
   render() {
-    const { classes, login, password, inProgress, loggedIn } = this.props;
+    const {
+      classes,
+      login,
+      password,
+      inProgress,
+      loggedIn,
+      hasError,
+    } = this.props;
+
     const { showPassword } = this.state;
 
     if (loggedIn) {
       return (
         <Redirect to={{ pathname: '/surveys' }} />
+      );
+    }
+
+    let progress = null;
+    let errorMessage = null;
+
+    if (inProgress) {
+      progress = (
+        <CircularProgress className={classes.progress} />
+      );
+    }
+
+    if (hasError) {
+      errorMessage = (
+        <Typography color="error" className={classes.error}>
+          {labels.loginFailed}
+        </Typography>
       );
     }
 
@@ -117,6 +147,8 @@ class Login extends Component {
           />
         </FormControl>
 
+        {errorMessage}
+
         <div className={classes.buttonArea}>
           <Button
             raised
@@ -125,9 +157,7 @@ class Login extends Component {
           >
             {labels.signIn}
           </Button>
-          {inProgress ? (
-            <CircularProgress className={classes.progress} />
-          ) : null}
+          {progress}
         </div>
       </form>
     );

@@ -26,7 +26,6 @@ export const signIn = (login, password) => (dispatch) => {
 
   api.signIn(login, password, (error, user) => {
     if (error) {
-      console.error('Login error:', error);
       dispatch({
         type: LOGIN_FAILED,
         error,

@@ -27,6 +27,7 @@ export default (state = initialState, action) => {
           ...state.input,
           login: action.login,
         },
+        hasError: false,
       };
 
     case LOGIN_UPDATE_PASSWORD:
@@ -36,12 +37,13 @@ export default (state = initialState, action) => {
           ...state.input,
           password: action.password,
         },
+        hasError: false,
       };
 
     case LOGIN_SEND:
       return {
         ...state,
-        error: null,
+        hasError: false,
         inProgress: true,
       };
 
@@ -61,7 +63,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         inProgress: false,
-        error: true,
+        hasError: true,
       };
 
     case LOGIN_LOGOUT:
