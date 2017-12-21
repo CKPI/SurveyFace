@@ -34,7 +34,7 @@ const styles = theme => ({
 
 class AccountSidebar extends Component {
   render() {
-    const { classes, userName, onMyPolls, onSignOut } = this.props;
+    const { classes, userName, onMySurveys, onSignOut } = this.props;
 
     return (
       <Fragment>
@@ -48,11 +48,11 @@ class AccountSidebar extends Component {
         </div>
 
         <List>
-          <ListItem button onClick={onMyPolls}>
+          <ListItem button onClick={onMySurveys}>
             <ListItemIcon>
               <AssessmentIcon />
             </ListItemIcon>
-            <ListItemText primary={labels.myPolls} />
+            <ListItemText primary={labels.mySurveys} />
           </ListItem>
           <ListItem button onClick={onSignOut}>
             <ListItemIcon>
@@ -70,7 +70,7 @@ AccountSidebar.propTypes = {
   classes: PropTypes.object.isRequired,
   userName: PropTypes.string.isRequired,
   onSignOut: PropTypes.func.isRequired,
-  onMyPolls: PropTypes.func.isRequired,
+  onMySurveys: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AccountSidebar);

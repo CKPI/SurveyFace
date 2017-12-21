@@ -78,7 +78,7 @@ class Main extends Component {
     const sidebar = loggedIn ? (
       <AccountSidebar
         userName={userName}
-        onMyPolls={this.handleSidebarClick(this.navigateToSurveys)}
+        onMySurveys={this.handleSidebarClick(this.navigateToSurveys)}
         onSignOut={this.handleSidebarClick(onSignOut)}
       />
     ) : (
