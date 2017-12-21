@@ -1,0 +1,6 @@
+export const LOGIN_UPDATE = 'LOGIN_UPDATE';
+export const LOGIN_UPDATE_PASSWORD = 'LOGIN_UPDATE_PASSWORD';
+export const LOGIN_SEND = 'LOGIN_SEND';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const LOGIN_LOGOUT = 'LOGIN_LOGOUT';
