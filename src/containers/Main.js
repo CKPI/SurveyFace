@@ -63,6 +63,14 @@ class Main extends Component {
     this.closeDrawer();
   }
 
+  navigateToSurveys = () => {
+    this.props.history.push('/surveys');
+  }
+
+  navigateToLogin = () => {
+    this.props.history.push('/login');
+  }
+
   render() {
     const { showDrawer } = this.state;
     const { classes, loggedIn, userName, onSignOut } = this.props;
@@ -70,12 +78,12 @@ class Main extends Component {
     const sidebar = loggedIn ? (
       <AccountSidebar
         userName={userName}
-        onMyPolls={this.handleSidebarClick(() => {})}
+        onMyPolls={this.handleSidebarClick(this.navigateToSurveys)}
         onSignOut={this.handleSidebarClick(onSignOut)}
       />
     ) : (
       <GuestSidebar
-        onSignIn={this.handleSidebarClick(() => {})}
+        onSignIn={this.handleSidebarClick(this.navigateToLogin)}
       />
     );
 
@@ -120,6 +128,7 @@ Main.propTypes = {
   children: PropTypes.node.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   userName: PropTypes.string,
+  history: PropTypes.object.isRequired,
   onSignOut: PropTypes.func.isRequired,
 };
 
