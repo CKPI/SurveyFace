@@ -4,3 +4,5 @@ export const LOGIN_SEND = 'LOGIN_SEND';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_LOGOUT = 'LOGIN_LOGOUT';
+export const LOGIN_PRELOAD = 'LOGIN_PRELOAD';
+export const LOGIN_CANCEL_PRELOAD = 'LOGIN_CANCEL_PRELOAD';

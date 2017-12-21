@@ -5,6 +5,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGIN_LOGOUT,
+  LOGIN_CANCEL_PRELOAD,
+  LOGIN_PRELOAD,
 } from '../constants/login';
 
 const initialState = {
@@ -16,6 +18,7 @@ const initialState = {
   inProgress: false,
   hasError: false,
   name: null,
+  preloading: false,
 };
 
 export default (state = initialState, action) => {
@@ -57,6 +60,7 @@ export default (state = initialState, action) => {
           login: '',
           password: '',
         },
+        preloading: false,
       };
 
     case LOGIN_FAILED:
@@ -67,6 +71,15 @@ export default (state = initialState, action) => {
       };
 
     case LOGIN_LOGOUT:
+      return initialState;
+
+    case LOGIN_PRELOAD:
+      return {
+        ...state,
+        preloading: true,
+      };
+
+    case LOGIN_CANCEL_PRELOAD:
       return initialState;
 
     default:

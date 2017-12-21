@@ -8,6 +8,7 @@ import { withStyles } from 'material-ui/styles';
 import MenuIcon from 'material-ui-icons/Menu';
 
 import AppBar from 'material-ui/AppBar';
+import { CircularProgress } from 'material-ui/Progress';
 import Drawer from 'material-ui/Drawer';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
@@ -75,6 +76,12 @@ class Main extends Component {
     const { showDrawer } = this.state;
     const { classes, loggedIn, userName, onSignOut } = this.props;
 
+    if (this.props.preloadingUser) {
+      return (
+        <CircularProgress />
+      );
+    }
+
     const sidebar = loggedIn ? (
       <AccountSidebar
         userName={userName}
@@ -127,6 +134,7 @@ Main.propTypes = {
   classes: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  preloadingUser: PropTypes.bool.isRequired,
   userName: PropTypes.string,
   history: PropTypes.object.isRequired,
   onSignOut: PropTypes.func.isRequired,
@@ -136,6 +144,7 @@ const mapStateToProps = (state) => {
   const { login } = state;
   return {
     loggedIn: login.loggedIn,
+    preloadingUser: login.preloading,
     userName: login.name,
   };
 };
