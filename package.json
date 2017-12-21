@@ -22,13 +22,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom && npm run -s lint",
     "lint": "eslint .",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "npm run -s lint"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",
     "eslint": "^4.13.1",
     "eslint-config-metarhia": "^2.0.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "husky": "^0.14.3"
   }
 }
