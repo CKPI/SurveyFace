@@ -101,6 +101,40 @@ class Survey extends Component {
           <Typography>
             {question.question}
           </Typography>
+
+          <MobileStepper
+            type="text"
+            steps={questionsCount}
+            activeStep={activeStep}
+            className={classes.mobileStepper}
+            backButton={
+              <Button
+                dense
+                onClick={this.handleBack}
+                disabled={activeStep === 0}
+              >
+                <KeyboardArrowLeftIcon />
+                {labels.back}
+              </Button>
+            }
+            nextButton={
+              <Button
+                dense
+                onClick={
+                  activeStep === questionsCount - 1 ?
+                    this.handleFinish :
+                    this.handleNext
+                }
+              >
+                {
+                  activeStep === questionsCount - 1 ?
+                    labels.finish :
+                    labels.next
+                }
+                <KeyboardArrowRightIcon />
+              </Button>
+            }
+          />
         </Fragment>
       );
     }
@@ -109,42 +143,7 @@ class Survey extends Component {
       <div className={classes.container}>
         {progress}
         {errorMessage}
-
         {questionElement}
-
-        <MobileStepper
-          type="text"
-          steps={questionsCount}
-          activeStep={activeStep}
-          className={classes.mobileStepper}
-          backButton={
-            <Button
-              dense
-              onClick={this.handleBack}
-              disabled={activeStep === 0}
-            >
-              <KeyboardArrowLeftIcon />
-              {labels.back}
-            </Button>
-          }
-          nextButton={
-            <Button
-              dense
-              onClick={
-                activeStep === questionsCount - 1 ?
-                  this.handleFinish :
-                  this.handleNext
-              }
-            >
-              {
-                activeStep === questionsCount - 1 ?
-                  labels.finish :
-                  labels.next
-              }
-              <KeyboardArrowRightIcon />
-            </Button>
-          }
-        />
       </div>
     );
   }
