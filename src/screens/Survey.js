@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -6,8 +6,11 @@ import { withStyles } from 'material-ui/styles';
 
 import Button from 'material-ui/Button';
 import { CircularProgress } from 'material-ui/Progress';
-import Stepper, { Step, StepLabel, StepContent } from 'material-ui/Stepper';
+import MobileStepper from 'material-ui/MobileStepper';
 import Typography from 'material-ui/Typography';
+
+import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
 
 import { loadSurvey, changeStep } from '../actions/currentSurvey';
 
@@ -18,17 +21,12 @@ const styles = theme => ({
     width: '100%',
   },
 
-  stepper: {
-    marginTop: theme.spacing.unit * 3,
-  },
-
-  actions: {
-    marginTop: theme.spacing.unit,
+  caption: {
     marginBottom: theme.spacing.unit,
   },
 
-  actionButton: {
-    marginRight: theme.spacing.unit,
+  mobileStepper: {
+    backgroundColor: theme.palette.common.white,
   },
 });
 
@@ -87,60 +85,66 @@ class Survey extends Component {
       );
     }
 
-    const steps = survey.questions.map(question => (
-      <Step key={question.question}>
-        <StepLabel>{question.question}</StepLabel>
-        <StepContent>
-          <Typography>{question.type}</Typography>
-          <div className={classes.actions}>
-            <Button
-              disabled={activeStep === 0}
-              onClick={this.handleBack}
-              className={classes.actionButton}
-            >
-              {labels.back}
-            </Button>
-            <Button
-              onClick={
-                activeStep === survey.questions.length - 1 ?
-                  this.handleFinish :
-                  this.handleNext
-              }
-              raised
-              color="primary"
-              className={classes.actionButton}
-            >
-              {
-                activeStep === survey.questions.length - 1 ?
-                  labels.finish :
-                  labels.next
-              }
-            </Button>
-          </div>
-        </StepContent>
-      </Step>
-    ));
+    const questions = survey.questions;
+    const questionsCount = questions.length;
+
+    const question = questions[activeStep];
+    let questionElement = null;
+
+    if (question) {
+      questionElement = (
+        <Fragment>
+          <Typography type="caption" className={classes.caption}>
+            {labels.question} {activeStep + 1} {labels.from} {questionsCount}
+          </Typography>
+
+          <Typography>
+            {question.question}
+          </Typography>
+        </Fragment>
+      );
+    }
 
     return (
       <div className={classes.container}>
         {progress}
         {errorMessage}
 
-        <Typography type="headline">
-          {survey.title}
-        </Typography>
+        {questionElement}
 
-        <Typography type="subheading">
-          {this.formatter.format(Date.parse(survey.date))}
-        </Typography>
-
-        <Stepper
+        <MobileStepper
+          type="text"
+          steps={questionsCount}
           activeStep={activeStep}
-          orientation="vertical"
-          className={classes.stepper}
-        >
-          {steps}
-        </Stepper>
+          className={classes.mobileStepper}
+          backButton={
+            <Button
+              dense
+              onClick={this.handleBack}
+              disabled={activeStep === 0}
+            >
+              <KeyboardArrowLeftIcon />
+              {labels.back}
+            </Button>
+          }
+          nextButton={
+            <Button
+              dense
+              onClick={
+                activeStep === questionsCount - 1 ?
+                  this.handleFinish :
+                  this.handleNext
+              }
+            >
+              {
+                activeStep === questionsCount - 1 ?
+                  labels.finish :
+                  labels.next
+              }
+              <KeyboardArrowRightIcon />
+            </Button>
+          }
+        />
       </div>
     );
   }
@@ -151,21 +155,13 @@ Survey.propTypes = {
   match: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
-  survey: PropTypes.array.isRequired,
+  survey: PropTypes.object.isRequired,
   activeStep: PropTypes.number.isRequired,
   onLoad: PropTypes.func.isRequired,
   onStepChange: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const { loading, error, survey, activeStep } = state.currentSurvey;
-  return {
-    isLoading: loading,
-    hasError: error,
-    survey,
-    activeStep,
-  };
-};
+const mapStateToProps = state => state.currentSurvey;
 
 const mapDispatchToProps = dispatch => ({
   onLoad(id) {

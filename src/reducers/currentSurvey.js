@@ -11,8 +11,8 @@ const initialState = {
     date: '1970-01-01T00:00:00.000Z',
     questions: [],
   },
-  loading: false,
-  error: false,
+  isLoading: false,
+  hasError: false,
   activeStep: 0,
 };
 
@@ -21,20 +21,20 @@ export default (state = initialState, action) => {
     case SURVEY_LOAD:
       return {
         ...initialState,
-        loading: true,
+        isLoading: true,
       };
 
     case SURVEY_LOAD_SUCCESS:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         survey: action.survey,
       };
 
     case SURVEY_LOAD_FAILED:
       return {
         ...initialState,
-        error: true,
+        hasError: true,
       };
 
     case SURVEY_CHANGE_STEP:

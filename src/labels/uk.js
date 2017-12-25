@@ -2,6 +2,7 @@ export default {
   appTitle: 'KPI Survey',
   back: 'Назад',
   finish: 'Завершити',
+  from: 'з',
   loadingFailed: 'Сталася помилка при завантаженні даних',
   loginExample: 'наприклад, ip1898',
   loginFailed: 'Ім\'я користувача або пароль вказано невірно',
@@ -9,6 +10,7 @@ export default {
   mySurveys: 'Мої опитування',
   next: 'Далі',
   passwordLabel: 'Пароль',
+  question: 'Питання',
   signIn: 'Увійти',
   signOut: 'Вийти',
 };
