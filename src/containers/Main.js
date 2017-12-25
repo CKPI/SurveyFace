@@ -36,6 +36,7 @@ const styles = theme => ({
       paddingLeft: theme.spacing.unit * 5,
       paddingRight: theme.spacing.unit * 5,
     },
+    marginTop: theme.typography.fontSize * 4,
   },
 });
 
@@ -96,7 +97,7 @@ class Main extends Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar>
           <Toolbar>
             <IconButton
               color="contrast"
