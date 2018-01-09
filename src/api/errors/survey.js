@@ -1,0 +1,4 @@
+export const ERR_MUST_BE_LOGGED_IN = 1025;
+export const ERR_SURVEY_NOT_FOUND = 1026;
+export const ERR_QUESTION_NOT_FOUND = 1027;
+export const ERR_INVALID_ANSWER = 1028;

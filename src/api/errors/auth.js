@@ -1,0 +1,5 @@
+export const ERR_INVALID_CREDENTIALS = 1025;
+export const ERR_MUST_BE_AUTHENTICATED = 1026;
+export const ERR_INVALID_TOKEN = 1027;
+export const ERR_ALREADY_REGISTERED = 1028;
+export const ERR_EMAIL_IN_USE = 1029;
