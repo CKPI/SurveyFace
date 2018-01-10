@@ -5,12 +5,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 
-import Avatar from 'material-ui/Avatar';
 import { CircularProgress } from 'material-ui/Progress';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 
-import PollIcon from 'material-ui-icons/Poll';
+import SurveysListItem from '../components/SurveysListItem';
 
 import { loadSurveysList } from '../actions/surveys';
 
@@ -39,7 +38,7 @@ class SurveysList extends Component {
     this.props.onLoad();
   }
 
-  handleSurveyClick(id) {
+  handleSurveyClick = (id) => {
     this.props.history.push(`/survey/${id}`);
   }
 
@@ -47,17 +46,14 @@ class SurveysList extends Component {
     const { classes, surveys, isLoading, hasError } = this.props;
 
     const listItems = surveys.map(survey => (
-      <ListItem
+      <SurveysListItem
+        id={survey.id}
+        date={survey.date}
+        formatter={this.formatter}
         key={survey.id}
-        button
-        onClick={() => this.handleSurveyClick(survey.id)}
-      >
-        <Avatar><PollIcon /></Avatar>
-        <ListItemText
-          primary={survey.title}
-          secondary={this.formatter.format(Date.parse(survey.date))}
-        />
-      </ListItem>
+        onClick={this.handleSurveyClick}
+        title={survey.title}
+      />
     ));
 
     let progress = null;

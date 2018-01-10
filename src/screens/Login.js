@@ -60,9 +60,9 @@ class Login extends Component {
   }
 
   handleShowPasswordClick = () => {
-    this.setState({
-      showPassword: !this.state.showPassword,
-    });
+    this.setState(prevState => ({
+      showPassword: !prevState.showPassword,
+    }));
   }
 
   handleShowPasswordMouseDown = (event) => {
@@ -134,7 +134,7 @@ class Login extends Component {
             value={password}
             onChange={this.handlePasswordChange}
             type={showPassword ? 'text' : 'password'}
-            endAdornment={
+            endAdornment={(
               <InputAdornment position="end">
                 <IconButton
                   onClick={this.handleShowPasswordClick}
@@ -143,7 +143,7 @@ class Login extends Component {
                   {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                 </IconButton>
               </InputAdornment>
-            }
+            )}
           />
         </FormControl>
 

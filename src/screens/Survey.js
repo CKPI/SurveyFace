@@ -107,7 +107,7 @@ class Survey extends Component {
             steps={questionsCount}
             activeStep={activeStep}
             className={classes.mobileStepper}
-            backButton={
+            backButton={(
               <Button
                 dense
                 onClick={this.handleBack}
@@ -116,8 +116,8 @@ class Survey extends Component {
                 <KeyboardArrowLeftIcon />
                 {labels.back}
               </Button>
-            }
-            nextButton={
+            )}
+            nextButton={(
               <Button
                 dense
                 onClick={
@@ -133,7 +133,7 @@ class Survey extends Component {
                 }
                 <KeyboardArrowRightIcon />
               </Button>
-            }
+            )}
           />
         </Fragment>
       );

@@ -48,13 +48,13 @@ class Main extends Component {
     };
   }
 
-  openDrawer = () => {
+  handleOpenDrawer = () => {
     this.setState({
       showDrawer: true,
     });
   }
 
-  closeDrawer = () => {
+  handleCloseDrawer = () => {
     this.setState({
       showDrawer: false,
     });
@@ -62,7 +62,7 @@ class Main extends Component {
 
   handleSidebarClick = callback => () => {
     callback();
-    this.closeDrawer();
+    this.handleCloseDrawer();
   }
 
   navigateToSurveys = () => {
@@ -102,7 +102,7 @@ class Main extends Component {
             <IconButton
               color="contrast"
               aria-label="Menu"
-              onClick={this.openDrawer}
+              onClick={this.handleOpenDrawer}
             >
               <MenuIcon />
             </IconButton>
@@ -117,7 +117,7 @@ class Main extends Component {
         <Drawer
           type="temporary"
           open={showDrawer}
-          onClose={this.closeDrawer}
+          onClose={this.handleCloseDrawer}
         >
           <div className={classes.drawer}>
             {sidebar}
