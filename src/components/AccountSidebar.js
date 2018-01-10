@@ -69,8 +69,8 @@ class AccountSidebar extends Component {
 AccountSidebar.propTypes = {
   classes: PropTypes.object.isRequired,
   userName: PropTypes.string.isRequired,
-  onSignOut: PropTypes.func.isRequired,
   onMySurveys: PropTypes.func.isRequired,
+  onSignOut: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AccountSidebar);

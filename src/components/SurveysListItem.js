@@ -31,11 +31,11 @@ class SurveysListItem extends Component {
 }
 
 SurveysListItem.propTypes = {
-  id: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   formatter: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default SurveysListItem;

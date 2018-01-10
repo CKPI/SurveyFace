@@ -132,12 +132,12 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-  classes: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   preloadingUser: PropTypes.bool.isRequired,
   userName: PropTypes.string,
-  history: PropTypes.object.isRequired,
   onSignOut: PropTypes.func.isRequired,
 };
 

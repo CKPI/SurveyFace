@@ -47,10 +47,10 @@ class SurveysList extends Component {
 
     const listItems = surveys.map(survey => (
       <SurveysListItem
+        key={survey.id}
         id={survey.id}
         date={survey.date}
         formatter={this.formatter}
-        key={survey.id}
         onClick={this.handleSurveyClick}
         title={survey.title}
       />
@@ -87,9 +87,9 @@ class SurveysList extends Component {
 
 SurveysList.propTypes = {
   classes: PropTypes.object.isRequired,
+  hasError: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  hasError: PropTypes.bool.isRequired,
   surveys: PropTypes.array.isRequired,
   onLoad: PropTypes.func.isRequired,
 };

@@ -150,12 +150,12 @@ class Survey extends Component {
 }
 
 Survey.propTypes = {
-  classes: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  hasError: PropTypes.bool.isRequired,
-  survey: PropTypes.object.isRequired,
   activeStep: PropTypes.number.isRequired,
+  classes: PropTypes.object.isRequired,
+  hasError: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired,
+  survey: PropTypes.object.isRequired,
   onLoad: PropTypes.func.isRequired,
   onStepChange: PropTypes.func.isRequired,
 };
